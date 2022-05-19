@@ -1,5 +1,8 @@
 // Defines an API route /api/search for simple DB queries
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { connectDB } from '../../config/db';
+
+connectDB();
 
 type Data = {
   name: string
