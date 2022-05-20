@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { initialiseMongoServer, stopMongoServer, clearMongoServer } from "./db";
 import Search from '../models/Search';
 
@@ -8,12 +9,13 @@ afterAll(async () => {    // shut down in between test suites
   await stopMongoServer();
 });
 
+const searchMultipleLocationsId = new mongoose.Types.ObjectId("4c8a331bda76c559ef000004");
+const searchSingleLocationId = new mongoose.Types.ObjectId("4c8a331bda76c559ef000005");
+
 // Set up array of searches to be saved to db
 const searches = [
   {
-    "_id": {
-      "$oid": "628706667983b31686e99ea5"
-    },
+    "_id": searchMultipleLocationsId,
     "listingType": "Sale",
     "locations": [
       {
@@ -34,9 +36,7 @@ const searches = [
     ]
   },
   {
-    "_id": {
-      "$oid": "628706667983b31686e99ea6"
-    },
+    "_id": searchSingleLocationId,
     "listingType": "Sale",
     "locations": [
       {
