@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import { SearchParams } from "../types/searchParams";
 const Schema = mongoose.Schema;
 
 // Search schema reflect the typing of searchParams types defined in types/searchParams.ts
 // The only required parameter is the search location - all other fields are optional
-const searchSchema = new Schema(
+const searchSchema = new Schema<SearchParams>(
   {
     listingType: { type: String, enum: ['Sale', 'Rent'], default: 'Sale' },
     minBedrooms: Number,
@@ -33,4 +34,5 @@ const searchSchema = new Schema(
   }
 );
 
-export const model = mongoose.model('Search', searchSchema);
+// Check for the existence of Search mongoose model and preferentially export this where possible to avoid trying to recreate the modeel (this throws an overwrite error)
+export default mongoose.models.Search || mongoose.model<SearchParams>("Search", searchSchema);

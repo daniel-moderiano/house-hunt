@@ -1,19 +1,23 @@
 // Defines an API route /api/search for simple DB queries
 import type { NextApiRequest, NextApiResponse } from 'next';
-// import { connectDB } from '../../config/db';
+import { connectDB } from '../../config/db';
+import { getSearches } from '../../controllers/getSearches';
 
-// connectDB();
+connectDB();
+
 
 type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  // await connectDB();
   switch (req.method) {
     case "GET":
+      getSearches();
       res.json({ name: 'hello' })
       // Get controller
       // Note: This will initially be called directly with getStaticProps on first render, rather than calling this API route. It remains to be seen if this route is needed at all
