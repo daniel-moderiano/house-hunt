@@ -1,15 +1,10 @@
-import mongoose from 'mongoose';
 import { SearchParams } from '../types/searchParams';
-import { searchSchema } from '../models/Search'
-
-const Search = mongoose.model('Search', searchSchema);
+import Search from '../models/Search'
 
 type dbResult = [] | SearchParams[];
 
-export const getSearches = async () => {
-  const searches = await Search.find({});
-  console.log(searches);
-
+export const getSearches = async (): Promise<dbResult> => {
+  const searches: dbResult = await Search.find({});
   return searches;
 }
 

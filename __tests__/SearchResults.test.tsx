@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react'
+/*
+ * @jest-environment jsdom 
+*/
+
+import { render, screen } from '@testing-library/react';
 import SearchResults from '../components/SearchResults';
 import '@testing-library/jest-dom';
 

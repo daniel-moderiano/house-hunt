@@ -5,7 +5,6 @@ import { getSearches } from '../../controllers/getSearches';
 
 connectDB();
 
-
 type Data = {
   name: string
 }
@@ -14,7 +13,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // await connectDB();
   switch (req.method) {
     case "GET":
       getSearches();
