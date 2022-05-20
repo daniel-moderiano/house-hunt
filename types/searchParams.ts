@@ -5,6 +5,7 @@ interface Locations {
 }
 
 export interface SearchParams {
+  id?: string;
   listingType: string;
   minBedrooms?: number;
   maxBedrooms?: number;
