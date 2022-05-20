@@ -4,7 +4,6 @@ import type { PageConfig } from 'next';
 
 // Respect the Next.js config object if it's exported
 const handler: typeof endpoint & { config?: PageConfig } = endpoint;
-// handler.config = config;
 
 describe('API route', () => {
   it('works', async () => {
