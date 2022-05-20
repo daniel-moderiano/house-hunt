@@ -4,10 +4,8 @@ interface Locations {
   includeSurroundingSuburbs: boolean;
 }
 
-type ListingType = 'Sale' | 'Rent';
-
 export interface SearchParams {
-  listingType: ListingType;
+  listingType: string;
   minBedrooms?: number;
   maxBedrooms?: number;
   minBathrooms?: number;
