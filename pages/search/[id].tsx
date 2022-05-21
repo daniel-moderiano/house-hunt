@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSearch } from "../../controllers/getSearch";
 import { connectDB } from "../../config/db";
 import { PropertyListing } from "../../types/listing";
-import Image from "next/image";
+import PropertyCard from "../../components/PropertyCard";
 
 // Retrieve listings from Domain
 export const searchPOST = async (searchObj: string): Promise<PropertyListing[]> => {
@@ -52,25 +52,8 @@ const Search = ({ results }: SearchProps) => {
   if (results.length > 0) {
     return (
       <div>
-        {results.map((result) => (
-          // Property card component here
-          <article key={result.listing.id}>
-            <section>
-              <Image src={result.listing.advertiser.bannerUrl} alt="" height={35} width={500} />
-              <p>{result.listing.advertiser.contacts[0].name}</p>
-              {result.listing.advertiser.contacts[0]?.photoUrl && (<Image height={50} width={50} alt="" src={result.listing.advertiser.contacts[0].photoUrl} />)}
-            </section>
-            <section>
-              <Image src={result.listing.media[0].url} alt="" height={400} width={500} />
-            </section>
-            <section>
-              <h2>{result.listing.priceDetails.displayPrice}</h2>
-              <div>
-                <p>{result.listing.propertyDetails.displayableAddress}</p>
-                <p>{result.listing.propertyDetails.propertyType}</p>
-              </div>
-            </section>
-          </article>
+        {results.map((property) => (
+          <PropertyCard key={property.listing.id} property={property} />
         ))}
       </div>
     )

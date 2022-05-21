@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SearchParams } from "../types/searchParams";
+import styles from '../styles/SearchCard.module.css'
 
 interface SearchesListProps {
   searches: SearchParams[];
@@ -9,9 +10,9 @@ const SearchesList = ({ searches }: SearchesListProps) => {
   return (
     <>
       {searches.map((search) => (
-        <article key={search.id}>
+        <article key={search.id} className={styles.card}>
           <header>
-            <h2><Link href={`/search/${search._id}`}><a>{search.name ? (search.name) : ('Search')}</a></Link></h2>
+            <h2><Link href={`/search/${search._id}`}><a className={styles.link}>{search.name ? (search.name) : ('Search')}</a></Link></h2>
 
           </header>
           <section>
