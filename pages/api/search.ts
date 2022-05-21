@@ -20,11 +20,12 @@ export default async function handler(
       res.status(200).json(await getSearches())
       break;
     case "POST":
-      searchDoc = JSON.parse(req.body.searchDoc);
+      searchDoc = req.body.searchDoc;
       if (!searchDoc) {
         res.status(400);
         res.json({ msg: 'No search document' })
       } else {
+        searchDoc = JSON.parse(req.body.searchDoc) as SearchParams;
         const newSearch = await createSearch(searchDoc);
         res.status(200).json(newSearch);
       }

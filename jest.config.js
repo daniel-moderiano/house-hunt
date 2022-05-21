@@ -11,10 +11,11 @@ const customJestConfig = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', '<rootDir>/'],
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: [
     "dbSetupTeardown.ts",
-    "db.ts"
+    "db.ts",
+    "api-example.ts"
   ],
   forceExit: true,
 }

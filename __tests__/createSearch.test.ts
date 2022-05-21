@@ -1,3 +1,7 @@
+/*
+ * @jest-environment node 
+*/
+
 import './dbSetupTeardown';
 import { createSearch } from '../controllers/createSearch';
 import { getSearches } from '../controllers/getSearches';

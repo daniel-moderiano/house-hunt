@@ -17,11 +17,12 @@ export default async function handler(
 
   switch (req.method) {
     case "PUT":
-      searchDoc = JSON.parse(req.body.searchDoc);
+      searchDoc = req.body.searchDoc;
       if (!searchDoc) {
         res.status(400);
         res.json({ msg: 'No search document' })
       } else {
+        searchDoc = JSON.parse(req.body.searchDoc);
         const updatedSearch = await updateSearch(searchId, searchDoc);
         res.status(200);
         res.json(updatedSearch);

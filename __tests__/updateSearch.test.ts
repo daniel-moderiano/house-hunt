@@ -1,3 +1,7 @@
+/*
+ * @jest-environment node 
+*/
+
 import './dbSetupTeardown';
 import { updateSearch } from '../controllers/updateSearch';
 import { getSearches } from '../controllers/getSearches';
