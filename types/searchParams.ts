@@ -6,14 +6,12 @@ interface Locations {
 
 export interface SearchParams {
   id?: string;
+  _id?: string;
+  name?: string;
   listingType: string;
   minBedrooms?: number;
-  maxBedrooms?: number;
   minBathrooms?: number;
-  maxBathrooms?: number;
   minCarspaces?: number;
-  maxCarspaces?: number;
-  minPrice?: number;
   maxPrice?: number;
   minLandArea?: number;
   maxLandArea?: number;

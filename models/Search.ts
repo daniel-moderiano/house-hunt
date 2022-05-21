@@ -6,14 +6,11 @@ const Schema = mongoose.Schema;
 // The only required parameter is the search location - all other fields are optional
 const searchSchema = new Schema<SearchParams>(
   {
+    name: String,
     listingType: { type: String, enum: ['Sale', 'Rent'], default: 'Sale' },
     minBedrooms: Number,
-    maxBedrooms: Number,
     minBathrooms: Number,
-    maxBathrooms: Number,
     minCarspaces: Number,
-    maxCarspaces: Number,
-    minPrice: Number,
     maxPrice: Number,
     minLandArea: Number,
     maxLandArea: Number,

@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '../../../config/db';
 import { deleteSearch } from '../../../controllers/deleteSearch';
+import { getSearch } from '../../../controllers/getSearch';
 import { updateSearch } from '../../../controllers/updateSearch';
 import { SearchParams } from '../../../types/searchParams';
 
@@ -16,6 +17,11 @@ export default async function handler(
   const searchId = req.query.searchId as string;
 
   switch (req.method) {
+    case "GET":
+      const search = await getSearch(searchId);
+      res.status(200);
+      res.json(search);
+      break;
     case "PUT":
       searchDoc = req.body.searchDoc;
       if (!searchDoc) {
