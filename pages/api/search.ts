@@ -1,7 +1,9 @@
 // Defines an API route /api/search for simple DB queries
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '../../config/db';
+import { createSearch } from '../../controllers/createSearch';
 import { getSearches } from '../../controllers/getSearches';
+import { SearchParams } from '../../types/searchParams';
 
 connectDB();
 
@@ -10,6 +12,28 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  res.status(200).json(await getSearches());
-  // Note: This will initially be called directly with getStaticProps on first render, rather than calling this API route. It remains to be seen if this route is needed at all
+  let searchDoc: SearchParams | undefined;
+
+  switch (req.method) {
+    case "GET":
+      // Note: This will initially be called directly with getStaticProps on first render, rather than calling this API route. It remains to be seen if this route is needed at all
+      res.status(200).json(await getSearches())
+      break;
+    case "POST":
+      searchDoc = JSON.parse(req.body.searchDoc);
+      if (!searchDoc) {
+        res.status(400);
+        res.json({ msg: 'No search document' })
+      } else {
+        const newSearch = await createSearch(searchDoc);
+        res.status(200).json(newSearch);
+      }
+      break;
+    default:
+      // Bad request
+      res.status(400);
+      res.json({ msg: 'error' })
+      break;
+  }
+
 }

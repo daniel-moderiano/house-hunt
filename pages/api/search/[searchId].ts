@@ -1,7 +1,6 @@
 // Defines an API route /api/search for simple DB queries
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectDB } from '../../../config/db';
-import { createSearch } from '../../../controllers/createSearch';
 import { deleteSearch } from '../../../controllers/deleteSearch';
 import { updateSearch } from '../../../controllers/updateSearch';
 import { SearchParams } from '../../../types/searchParams';
@@ -17,17 +16,16 @@ export default async function handler(
   const searchId = req.query.searchId as string;
 
   switch (req.method) {
-    case "POST":
-      searchDoc = JSON.parse(req.body.searchDoc);
-      const newSearch = await createSearch(searchDoc);
-      res.status(200);
-      res.json(newSearch);
-      break;
     case "PUT":
       searchDoc = JSON.parse(req.body.searchDoc);
-      const updatedSearch = await updateSearch(searchId, searchDoc);
-      res.status(200);
-      res.json(updatedSearch);
+      if (!searchDoc) {
+        res.status(400);
+        res.json({ msg: 'No search document' })
+      } else {
+        const updatedSearch = await updateSearch(searchId, searchDoc);
+        res.status(200);
+        res.json(updatedSearch);
+      }
       break;
     case "DELETE":
       const deletedSearch = await deleteSearch(searchId);
