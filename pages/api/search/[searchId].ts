@@ -13,7 +13,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let searchDoc: SearchParams;
   const searchId = req.query.searchId as string;
 
   switch (req.method) {
@@ -23,12 +22,11 @@ export default async function handler(
       res.json(search);
       break;
     case "PUT":
-      searchDoc = req.body.searchDoc;
-      if (!searchDoc) {
+      if (!req.body) {
         res.status(400);
         res.json({ msg: 'No search document' })
       } else {
-        searchDoc = JSON.parse(req.body.searchDoc);
+        const searchDoc = JSON.parse(req.body) as SearchParams;
         const updatedSearch = await updateSearch(searchId, searchDoc);
         res.status(200);
         res.json(updatedSearch);
@@ -36,6 +34,8 @@ export default async function handler(
       break;
     case "DELETE":
       const deletedSearch = await deleteSearch(searchId);
+      console.log(deletedSearch);
+
       res.status(200);
       res.json(deletedSearch);
       break;

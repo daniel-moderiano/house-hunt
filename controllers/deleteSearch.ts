@@ -5,7 +5,7 @@ import Search from '../models/Search'
 type dbResult = null | SearchParams;
 
 export const deleteSearch = async (searchId: string): Promise<dbResult> => {
-  const search: dbResult = await Search.findById(searchId);
+  const search: dbResult = await Search.findByIdAndDelete(searchId);
   return search;
 }
 

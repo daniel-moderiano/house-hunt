@@ -19,9 +19,7 @@ const searchSchema = new Schema<SearchParams>(
         state: { type: String, required: true },
         suburb: { type: String, required: true },
       }], required: true
-    },
-    pageSize: Number,   // number of properties per page
-    pageNumber: Number,   // page number of results (paginated on server side)
+    }
   },
   {
     timestamps: true, // Adds createdAt and updatedAt timestamps automatically

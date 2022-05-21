@@ -1,4 +1,4 @@
-interface Locations {
+export interface Locations {
   state: string;
   suburb: string;
 }
@@ -15,6 +15,4 @@ export interface SearchParams {
   minLandArea?: number;
   maxLandArea?: number;
   locations: Locations[];
-  pageSize?: number;    // number of properties per page
-  pageNumber?: number;    // page number of results (paginated on server side)
 }

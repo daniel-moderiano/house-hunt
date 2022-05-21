@@ -12,21 +12,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let searchDoc: SearchParams | undefined;
-
   switch (req.method) {
     case "GET":
       // Note: This will initially be called directly with getStaticProps on first render, rather than calling this API route. It remains to be seen if this route is needed at all
       res.status(200).json(await getSearches())
       break;
     case "POST":
-      searchDoc = req.body.searchDoc;
-      if (!searchDoc) {
+      if (!req.body) {
         res.status(400);
         res.json({ msg: 'No search document' })
       } else {
-        searchDoc = JSON.parse(req.body.searchDoc) as SearchParams;
-        const newSearch = await createSearch(searchDoc);
+        // const searchDoc = JSON.parse(req.body) as SearchParams;
+        const newSearch = await createSearch(req.body);
         res.status(200).json(newSearch);
       }
       break;

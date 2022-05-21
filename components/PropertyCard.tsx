@@ -22,6 +22,13 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         <div>
           <p>{property.listing.propertyDetails.displayableAddress}</p>
           <p>{property.listing.propertyDetails.propertyType}</p>
+          <div>
+            <p>{property.listing.propertyDetails.bedrooms} bed</p>
+            <p>{property.listing.propertyDetails.bathrooms} bath</p>
+            <p>{property.listing.propertyDetails.carspaces} car</p>
+            {property.listing.propertyDetails.landArea && <p>{property.listing.propertyDetails.landArea} m2</p>}
+
+          </div>
         </div>
       </section>
     </article>
