@@ -18,7 +18,6 @@ const searchSchema = new Schema<SearchParams>(
       type: [{
         state: { type: String, required: true },
         suburb: { type: String, required: true },
-        includeSurroundingSuburbs: { type: Boolean, required: true }
       }], required: true
     },
     pageSize: Number,   // number of properties per page

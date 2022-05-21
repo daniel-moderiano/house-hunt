@@ -21,17 +21,14 @@ const searches = [
       {
         "state": "SA",
         "suburb": "Para Vista",
-        "includeSurroundingSuburbs": false
       },
       {
         "state": "SA",
         "suburb": "Modbury",
-        "includeSurroundingSuburbs": false
       },
       {
         "state": "SA",
         "suburb": "Clearview",
-        "includeSurroundingSuburbs": false
       }
     ]
   },
@@ -42,7 +39,6 @@ const searches = [
       {
         "state": "SA",
         "suburb": "Wynn Vale",
-        "includeSurroundingSuburbs": false
       }
     ]
   }

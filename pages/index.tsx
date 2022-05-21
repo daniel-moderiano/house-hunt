@@ -1,8 +1,11 @@
 import { getSearches } from "../controllers/getSearches";
 import { GetServerSideProps } from "next";
 import SearchesList from "../components/SearchesList";
+import { connectDB } from "../config/db";
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  await connectDB();
+
   // Fetch data from external API
   const res = await getSearches();
   const searchesJSON = JSON.stringify(res);
@@ -26,6 +29,10 @@ const Home = ({ searches }: HomeProps) => {
         <p>No saved searches</p>
       )}
     </div>
+  )
+
+  return (
+    <div>Home</div>
   )
 }
 

@@ -1,7 +1,6 @@
 interface Locations {
   state: string;
   suburb: string;
-  includeSurroundingSuburbs: boolean;
 }
 
 export interface SearchParams {
