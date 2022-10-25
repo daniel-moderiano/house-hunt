@@ -6,3 +6,9 @@
   max-width: 550px;
   margin: 2rem 0;
 }
+
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

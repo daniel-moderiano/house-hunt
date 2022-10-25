@@ -10,7 +10,9 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   return (
     <article key={property.listing.id} className={styles.card}>
       <section>
-        <Image src={property.listing.advertiser.bannerUrl} alt="" height={35} width={500} />
+        {property.listing.advertiser.bannerUrl && (
+          <Image src={property.listing.advertiser.bannerUrl} alt="" height={35} width={500} />
+        )}
         <p>{property.listing.advertiser.contacts[0].name}</p>
         {property.listing.advertiser.contacts[0]?.photoUrl && (<Image height={50} width={50} alt="" src={property.listing.advertiser.contacts[0].photoUrl} />)}
       </section>
@@ -22,7 +24,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         <div>
           <p>{property.listing.propertyDetails.displayableAddress}</p>
           <p>{property.listing.propertyDetails.propertyType}</p>
-          <div>
+          <div className={styles.stats}>
             <p>{property.listing.propertyDetails.bedrooms} bed</p>
             <p>{property.listing.propertyDetails.bathrooms} bath</p>
             <p>{property.listing.propertyDetails.carspaces} car</p>
